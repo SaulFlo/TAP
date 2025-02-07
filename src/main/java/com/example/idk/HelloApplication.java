@@ -1,5 +1,6 @@
 package com.example.idk;
 
+import com.example.idk.vistas.Calculadora;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
@@ -21,6 +22,7 @@ public class HelloApplication extends Application {
 
     void crearUI(){
         mitCalculadora = new MenuItem("Calculadora");
+        mitCalculadora.setOnAction(event -> new Calculadora()); //Creo un objeto calculadora temporal. -> expresion lambda.
 
         mnCompetencia1 = new Menu("Primer Parcial");
         mnCompetencia1.getItems().addAll(mitCalculadora);
