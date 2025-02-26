@@ -1,0 +1,21 @@
+.button{
+    -fx-background-color: #cdbdbd;
+    -fx-text-fill: #121010;
+    -fx-border-color: black;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+}
+
+.button:hover, .operatorButton{
+    -fx-background-color: #4a7cc9;
+}
+
+.operatorButton{
+    -fx-font: bold italic "Arial";
+    -fx-background-color: #bd831c;
+    -fx-text-fill: #201e1e;
+}
+
+VBox{
+    -fx-background-color: #000000;
+}
