@@ -1,7 +1,9 @@
 package com.example.idk;
 
+import com.example.idk.componentes.Hilo;
 import com.example.idk.modelos.Conexion;
 import com.example.idk.vistas.Calculadora;
+import com.example.idk.vistas.ListaClientes;
 import com.example.idk.vistas.VentasRestaurante;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -32,9 +34,9 @@ public class HelloApplication extends Application {
         mitCalculadora.setOnAction(event -> new Calculadora()); //Creo un objeto calculadora temporal. -> expresion lambda.
 
         mitRestaurante = new MenuItem("Restaurante");
-        mitRestaurante.setOnAction(event -> new VentasRestaurante());
+        mitRestaurante.setOnAction(event -> new ListaClientes());
 
-        mnCompetencia1 = new Menu("Primer Parcial");
+        mnCompetencia1 = new Menu("Primer competencia");
         mnCompetencia1.getItems().addAll(mitCalculadora, mitRestaurante);
 
         mnbPrincipal = new MenuBar();
@@ -46,6 +48,9 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        new Hilo("Lemus").start();
+        new Hilo("Leo").start();
+
         Conexion.crearConnection();
         crearUI();
         stage.setTitle("Hello World"); // nombre de la ventana
