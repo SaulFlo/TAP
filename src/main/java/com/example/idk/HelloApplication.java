@@ -2,9 +2,7 @@ package com.example.idk;
 
 import com.example.idk.componentes.Hilo;
 import com.example.idk.modelos.Conexion;
-import com.example.idk.vistas.Calculadora;
-import com.example.idk.vistas.ListaClientes;
-import com.example.idk.vistas.VentasRestaurante;
+import com.example.idk.vistas.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -25,7 +23,7 @@ public class HelloApplication extends Application {
 
     private Menu mnCompetencia1, mnCompetencia2;
 
-    private MenuItem mitCalculadora, mitRestaurante;
+    private MenuItem mitCalculadora, mitRompecabezas, mitRestaurante, mitCarrera;
 
     private Scene escena;
 
@@ -33,14 +31,23 @@ public class HelloApplication extends Application {
         mitCalculadora = new MenuItem("Calculadora");
         mitCalculadora.setOnAction(event -> new Calculadora()); //Creo un objeto calculadora temporal. -> expresion lambda.
 
+        mitRompecabezas = new MenuItem("Rompecabezas");
+        mitRompecabezas.setOnAction(event -> new Rompecabezas());
+
         mitRestaurante = new MenuItem("Restaurante");
         mitRestaurante.setOnAction(event -> new ListaClientes());
 
+        mitCarrera = new MenuItem("Carrera de hilos");
+        mitCarrera.setOnAction(event -> new Caja());
+
         mnCompetencia1 = new Menu("Primer competencia");
-        mnCompetencia1.getItems().addAll(mitCalculadora, mitRestaurante);
+        mnCompetencia1.getItems().addAll(mitCalculadora, mitRompecabezas, mitRestaurante);
+
+        mnCompetencia2 = new Menu("Segunda competencia");
+        mnCompetencia2.getItems().addAll(mitCarrera);
 
         mnbPrincipal = new MenuBar();
-        mnbPrincipal.getMenus().addAll(mnCompetencia1);
+        mnbPrincipal.getMenus().addAll(mnCompetencia1, mnCompetencia2);
         vBox = new VBox(mnbPrincipal);
         escena = new Scene(vBox);
         escena.getStylesheets().add(getClass().getResource("/styles/main.css").toString());
@@ -48,8 +55,8 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        new Hilo("Lemus").start();
-        new Hilo("Leo").start();
+        /*new Hilo("Lemus").start();
+        new Hilo("Leo").start();*/
 
         Conexion.crearConnection();
         crearUI();

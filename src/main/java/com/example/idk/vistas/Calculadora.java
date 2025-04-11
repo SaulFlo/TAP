@@ -45,8 +45,6 @@ public class Calculadora extends Stage {
         scene.getStylesheets().add(getClass().getResource("/styles/calcu.css").toString());
 
     }
-
-
     public void CrearKeyBoard(){
 
         arBtnTeclado = new Button[4][4];
@@ -76,11 +74,9 @@ public class Calculadora extends Stage {
 
         }
     }
-
     private String operadores = "*/+-";
     private boolean flag = false;
     private boolean point = false;
-
     private void addText(String c) {
 
         if(flag){
@@ -91,7 +87,6 @@ public class Calculadora extends Stage {
         if(evaluate(c))
             txtPanel.appendText(c);
     }
-
     private boolean evaluate(String c) {
         boolean res = true;
         String txt = txtPanel.getText();
@@ -104,6 +99,8 @@ public class Calculadora extends Stage {
             if(c.equals("=")){
                 txtPanel.setText(calcular(txt));
                 point= false;
+                if(txtPanel.getText().contains("E") || txtPanel.getText().contains("-"))
+                    flag = true;
             }
             else if (esOperador(cFinal)){
                 if(esOperador(c))
@@ -133,24 +130,22 @@ public class Calculadora extends Stage {
         }
         return res;
     }
-
     private boolean esOperador(String c) {
         return operadores.indexOf(c) >= 0;
     }
     private boolean esOperador(char c) {
         return operadores.indexOf(c) >= 0;
     }
-
-
-
     private String calcular(String expresion) {
 
         Stack<Double> operandos = new Stack<>();
         Stack<Character> operadores = new Stack<>();
 
         if(!Character.isDigit(expresion.charAt(expresion.length() - 1))){
-            flag = true;
-            return "Formato invalido";
+            if(!expresion.endsWith(".")){
+                flag = true;
+                return "Formato invalido";
+            }
         }
 
         for(int i = 0; i < expresion.length(); i++){
@@ -194,7 +189,6 @@ public class Calculadora extends Stage {
 
         return String.valueOf(operandos.pop());
     }
-
     public int leerNum(int i, char c, String expresion, Stack<Double> operandos){
         String num = "";
         while (i < expresion.length() && (Character.isDigit(c) || c == '.' || c == 'E')) {

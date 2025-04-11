@@ -1,0 +1,14 @@
+#titulo{
+    -fx-font-size: 35;
+    -fx-font-family: Verdana;
+    -fx-font-weight: bold;
+}
+
+RadioButton {
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+.buttonImg{
+
+}

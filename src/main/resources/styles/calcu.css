@@ -11,7 +11,8 @@
 }
 
 .operatorButton{
-    -fx-font: bold italic "Arial";
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
     -fx-background-color: #bd831c;
     -fx-text-fill: #201e1e;
 }
